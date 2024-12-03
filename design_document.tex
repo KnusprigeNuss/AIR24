@@ -15,16 +15,19 @@
 
 \section{Abstract}
 
-This project focuses on building a tool to predict a person’s risk of heart disease based on their health information.
-We are using a dataset from Kaggle called "Indicators of Heart Disease,"
-which includes health details like BMI, smoking status, physical activity, and other personal information.
-Our goal is to train a machine learning model to estimate the likelihood of heart disease.\\
-To make it user-friendly, we’re using the ChatGPT API to understand natural language input.
-This means users can describe their health and lifestyle in their own words,
-and ChatGPT will extract important details like age, exercise habits, and medical conditions.
-These details are then fed into our prediction model, which calculates a risk score for heart disease.\\
-Overall, this project combines machine learning for medical predictions with natural language processing,
-so people can easily check their heart health risks.
+This project focuses on building a tool to predict a person’s risk of heart diseases based on their health information,
+and recommend drugs in case of risk.
+We are using a dataset from Kaggle called "Indicators of Heart Disease",
+which includes health details like BMI, smoking status, physical activity, and other personal information,
+to predict the heart disease risk,
+and another dataset called "Drug Dataset: Uses, Side Effects and User Reviews" to recommend drugs.
+Our goal is to train a machine learning model to estimate the likelihood of heart disease,
+whose output we use to retrieve drug information to recommend medication.
+The user will input their health details into a web frontend,
+which is then fed into our prediction model,
+which calculates a risk score for heart disease.
+Overall, this project combines machine learning for medical predictions with information retrieval for drug recommendations,
+so people can easily check their heart health and take action.
 We aim to create a simple and accessible tool to help with early detection and prevention of heart disease.
 
 
