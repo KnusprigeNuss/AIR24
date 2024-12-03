@@ -53,8 +53,8 @@ We use the data we get back and the ChatGPT API again to write a text, which can
 \section{Dataset + Processing}
 
 % resources used
-
-We use the dataset "Indicators of Heart Disease" found on Kaggle\footnote{https://www.kaggle.com/datasets/kamilpytlak/personal-key-indicators-of-heart-disease},
+We use a total of two datasets for our project. The first one is about heart disease, and the second one is about drugs and medications.
+More specifically, the name of the first dataset is "Indicators of Heart Disease" found on Kaggle\footnote{https://www.kaggle.com/datasets/kamilpytlak/personal-key-indicators-of-heart-disease},
 which contains 3 tables: a dataset from 2020 (which we will not use),
 and two updated versions from 2022.
 One of the 2022 tables is simply a subset of the other table where every row which is missing data in any column has been removed.
@@ -87,6 +87,22 @@ The last column is \textit{State}, which is either one of 5 US states,
 which also hints at the sample population of this study.
 We do not expect this column to have a major impact on heart attacks,
 and since this is only limited to a small number of US states, we do not include it in our model.
+
+The second dataset, "Drugs and Medications," also sourced from Kaggle\footnote{\url{https://www.kaggle.com/datasets/aadyasingh55/drug-dataset}},
+focuses on pharmaceutical insights. The dataset contains $11,825$ rows. It includes columns such as:
+
+\begin{itemize} 
+    \item \textit{Medical Name}, identifying the specific drug. 
+    \item \textit{Composition}, listing the medical ingredients comprising each drug. 
+    \item \textit{Uses}, describing the conditions or ailments the drug is designed to treat. 
+    \item \textit{Side Effects}, capturing adverse reactions reported by users. 
+    \item \textit{Image URL}, linking to visuals like packaging or drug-related images. 
+    \item \textit{Manufacturer}, indicating the pharmaceutical company producing the drug. 
+    \item User review statistics: \textit{Excellent Reviews}, \textit{Average Reviews}, and \textit{Poor Reviews}, expressed as percentages. These three values sum to 100 for each drug. 
+\end{itemize}
+
+Both datasets complement each other, with the first emphasizing individual health indicators, which will later be used to classify 
+if the lifestyle of a user can lead to heart disease. The second dataset provides the data for our information retrieval system.
 
 \section{Methods/Models}
 After successfully pre-processing and cleaning the dataset from Kaggle, we can now begin by selecting relevant features from the dataset, ensuring that they correspond to the natural language input received from the user. For example, numerical features, such as BMI or age, need to be normalized (divided by max value, such that the number is between 0 and 1) in order to improve the model’s performance. For categorical variables like the smoking status we could simply use binary encoding, since it only allows true or false. Other categorical factors, like the age category for example, that have more classes (60-64, 65-69, 80+, ...), we intend on using methods like one-hot encoding or label encoding in order to integrate them into our ML models. It has to be noted, that not all the factors presented in the dataset have the same impact on heart disease risk. This means that a fitting weighting scheme has to be applied to the different factors (e.g. importance scores). Once our features are selected and prepared, we experiment with several machine learning models to identify the one that provides the best predictive accuracy. Some of our candidate models include methods like linear regression (if we want to give a risk score), logistic regression (if we want specific risk groups), decision trees, random forest and Gradient Descent/Boosting. These models are selected for their ability to handle both categorical and numerical data efficiently and provide accurate predictions of heart disease risk. If we decide to use the classification approach (different risk classes), some important metrics to decide, how well these models perform are for example accuracy (overall correctness of the model), precision (positive predictions that are actually correct) and recall (actual positives that were correctly identified). We then want to utilize a cross-validation method (e.g. k-fold cross-validation) to evaluate the performance of machine learning models and ensuring that they respond correct to unseen data. Using cross-validation can help us assess the effectiveness of our models when predicting heart disease risk based on user inputs. Finally, given the project’s emphasis on building an information retrieval system, we will explore explainability techniques like SHAP values, LIME, or feature importance from random forests to understand the model’s decision-making process. This will help users gain insights into their health risks based on lifestyle and medical indicators, and therefore providing an interpretable output that is both accurate and user-friendly.
