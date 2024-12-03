@@ -21,7 +21,7 @@ which includes health details like BMI, smoking status, physical activity, and o
 We use another dataset called "Drug Dataset: Uses, Side Effects and User Reviews" to recommend drugs.
 Our goal is to train a machine learning model to estimate the likelihood of heart disease,
 whose output we use to retrieve drug information to recommend medication.\\
-The user will input their health details into a web frontend, which is then fed into our prediction model, which calculates a risk score for heart disease.\\
+The user will input their health details into a web frontend, which is then fed into our prediction model, which calculates if the user is at risk.\\
 Overall, this project combines machine learning for medical predictions with information retrieval for drug recommendations,
 so people can easily check their heart health and take action.
 We aim to create a simple and accessible tool to help with early detection and prevention of heart disease.
@@ -32,14 +32,14 @@ We plan to build a complete system, using multiple techniques of machine learnin
 we create a website where the user can enter all the necessary health information. The front-end will be a vue app and the back-end will be a Flask server.
 Based on this user input, he will then get a ranking of the best fitting medicals to this query.
 To be more specific, this is the flow chart description that we have in mind:
-\begin{itemize}
+\begin{enumerate}
     \item The user enters his health data. The HTML form will include all the features from the heart disease dataset which is described in the latter section.
     \item After that the Python Flask server will load the previously generated heart disease ai model and predict whether the user is of a risk to a heart disease or not.
     \item If the user is at risk for heart disease, we then use the second dataset which includes medicine data.
     \item With the features from the user input, we rank the best fitting medicine for the user.
     \item The server then sends the top 5 best fitting medicals back to the frontend.
     \item On top of the names, we will further display all the additional data for each of the five entries in the drug dataset. This includes pictures of the drugs, possible side effects, etc.
-\end{itemize} 
+\end{enumerate} 
 
 % The datasets that we want to use is originally from \textbf{CDC - U.S. Centers for disease control and prevention}. This organization has set up a survey system which started in 1984.
 %  The so called \textbf{BRFSS - Behavioral Risk Factor Surveillance System} is a survey on American citizens which conducts questions about health-related risk behaviors, 
@@ -64,7 +64,7 @@ To be more specific, this is the flow chart description that we have in mind:
 % resources used
 \subsection{Indicators of Heart Disease}
 We use the dataset "Indicators of Heart Disease" found on Kaggle\footnote{https://www.kaggle.com/datasets/kamilpytlak/personal-key-indicators-of-heart-disease},
-which contains 3 tables: a dataset from 2020 (which we will not use),
+which contains 3 tables: a dataset from 2020,
 and two updated versions from 2022.
 One of the 2022 tables is simply a subset of the other table where every row which is missing data in any column has been removed.
 The complete one is called \texttt{heart\_2022\_with\_nans}, containing $445,132$ rows,
@@ -132,8 +132,8 @@ We are group number 4, consisting of the following members:
     \item Alexander Niederreiter
     \item Raphael Hutten
 \end{itemize}
+
 Fabian Baischer will be responsible for setting up the server and the UI on the website. That means getting a server for the model, hosting it, and let it communicate with a repository so we can push code and change the model accordingly when it comes to any mistakes.
-\vspace{1em}
 Patrick Berchtold is tasked with setting up the model and validate the database so it can give an accurate decision. He will also need to preprocess the input made by the user accordingly because smoking a little and smoking a lot makes a big difference. This is a very important task which comes with a lot of decisions since the following things have to be taken into consideration:
 \begin{itemize}
     \item It must be carefully evicted which model. 
@@ -144,7 +144,7 @@ Patrick Berchtold is tasked with setting up the model and validate the database 
     \item Using pipelines to fit multiple models and filter out the best ones.
     \item Maybe even use Gradient Boosting with multiple cycles to get a state-of-the-art highly accurate model.
 \end{itemize}
-\vspace{1em}
+
 Alexander Niederreiter and Raphael Hutten will concentrate on the recommended drug system based on the User Input. For that they will also need to preprocess the data accordingly, since the database doesn't just say "heart disease", but has different kind of diseases, side effects and uses. To accurately represent the conditions and asked questions for the model and also use the input for different descriptions made by different companies without overseeing working drugs due to synonyms used in the descriptions. (eg. Heart disease, Cardiac disease).
 
 \end{document}
