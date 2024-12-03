@@ -41,13 +41,6 @@ The goal is to fit the most accurate model on this dataset to predict efficientl
 \begin{center} 
 \includegraphics[scale=.75]{Hearth_death.drawio(1).png}
 \end{center}
-As you can see in the graphic above, we have the user write an input. Of course we give them some hints before that, what they should to talk about in their input. We process that using the ChatGPT API to get data in a comprehensible way for our trained model.
-\\
-The model we train ourselves beforehand, splitting our dataset 80/20 for training and evaluation until we are satisfied with the current state.
-\\
-We use the data we get back and the ChatGPT API again to write a text, which can give the User a detailed explanation about our calculated probability and the reasoning for it.
-
-\newpage
 
 \section{Dataset + Processing}
 
@@ -107,9 +100,6 @@ For the drug recommendations we use the dataset "Drug Dataset: Uses, Side Effect
 
 \section{Methods/Models}
 After successfully pre-processing and cleaning the dataset from Kaggle, we can now begin by selecting relevant features from the dataset, corresponding to the input made by the user. Since we do not force people to give us their data about their health, we need to find out what we were given and also if it is useable for our database. It has to be noted, that not all the factors presented in the dataset have the same impact on heart disease risk. This means that a fitting weighting scheme has to be applied to the different factors (e.g. importance scores). Once our features are selected and prepared, we experiment with several machine learning models to identify the one that provides the best predictive accuracy. Some of our candidate models include methods like linear regression (if we want to give a risk score), logistic regression (if we want specific risk groups), decision trees, random forest and Gradient Descent/Boosting. These models are selected for their ability to handle both categorical and numerical data efficiently and provide accurate predictions of heart disease risk. If we decide to use the classification approach (different risk classes), some important metrics to decide, how well these models perform are for example accuracy (overall correctness of the model), precision (positive predictions that are actually correct) and recall (actual positives that were correctly identified). We then want to utilize a cross-validation method (e.g. k-fold cross-validation) to evaluate the performance of machine learning models and ensuring that they respond correct to unseen data. Using cross-validation can help us assess the effectiveness of our models when predicting heart disease risk based on user inputs. If the model decides, that the user is at a high risk of getting a heart disease we will start process the user input correctly for our drug database so we can use it for a more accurate recommendation for the specific patient. There is no drug "for smoker", but different drugs could resolve into a lower blood oxygen or iron levels, which could be a risk for smokers. This has to be accounted for. Therefore we search for different words and definitions described in the side effects, but also benefits using a cosine similarity. If we have found the 5 best recommendations for this specific user, we return the recommendation to the user. 
-
-\newpage
-
 
 \section{Evaluation}
 
