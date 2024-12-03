@@ -15,35 +15,31 @@
 
 \section{Abstract}
 
-This project focuses on building a tool to predict a person’s risk of heart diseases based on their health information,
-and recommend drugs in case of risk.
+This project focuses on building a tool to predict a person’s risk of heart diseases based on their health information, and recommend drugs in case of risk.
 We are using a dataset from Kaggle called "Indicators of Heart Disease",
-which includes health details like BMI, smoking status, physical activity, and other personal information,
-to predict the heart disease risk,
+which includes health details like BMI, smoking status, physical activity, and other personal information, to predict the heart disease risk,
 and another dataset called "Drug Dataset: Uses, Side Effects and User Reviews" to recommend drugs.
 Our goal is to train a machine learning model to estimate the likelihood of heart disease,
-whose output we use to retrieve drug information to recommend medication.
-The user will input their health details into a web frontend,
-which is then fed into our prediction model,
-which calculates a risk score for heart disease.
+whose output we use to retrieve drug information to recommend medication.\\
+The user will input their health details into a web frontend, which is then fed into our prediction model, which calculates a risk score for heart disease.\\
 Overall, this project combines machine learning for medical predictions with information retrieval for drug recommendations,
 so people can easily check their heart health and take action.
 We aim to create a simple and accessible tool to help with early detection and prevention of heart disease.
 
 
-\section{Main task TODO Fabian}
+\section{Main task}
 
 The main question that our work is trying to solve:\\
 Can a machine learning model, combined with natural language processing, accurately predict an individual’s risk of heart disease based on self-reported health indicators and lifestyle factors?\\
-This research question aims to process the natural language input and give the user reasonable results about being at risk of having a heart disease.\\
+Furthermore, the information retrieval part is covered by creating a ranking of the best fitting medicine for the user input.
 The dataset that we want to use is originally from \textbf{CDC - U.S. Centers for disease control and prevention}. This organization has set up a survey system which started in 1984. The so called \textbf{BRFSS - Behavioral Risk Factor Surveillance System} is a survey on American citizens which conducts questions about health-related risk behaviors, chronic health conditions and use of preventive services. By now, the BRFSS collects a yearly data from more than 400,000 adults. With that it is the largest conducted health survey system in the world.\\
-To make the input for the model as intuitive and straightforward as possible, we also want to use the API of ChatGPT. The goal is that the user can choose between two input methods. The first one is the classic tabular input method which follows the principle of a form sheet. However, to guarantee a straightforward user experience, we also want to provide the possibility to provide the input as a textual form. With the power of the API of ChatGPT, it should automatically convert the input of the user and filter out the various features that the model needs. We plan to make a web interface for the user as input. The front-end will be a vue app and the back-end will be a Flask server.\\
-On Kaggle, the dataset from the year 2022 is available. The goal is to fit the most accurate model on this dataset to predict efficiently how likely it is for an adult to gain a heart disease. However, the original data contains nearly 300 variables which was reduced to the most important 40 variables by the author who published this set on Kaggle. Moreover, there exist two different versions of the dataset. With NaNs and without NaNs in it. We will decide which version we want to build on, once we have a clearer structure in which way we want to design our model. Furthermore, the careful decision if and with what we want to substitute the NaNs.\\
+We set up a Flask web server which will host a Vue.js website. The website will display a HTML input form with exactly the features from the heart disease database.
+The goal is to fit the most accurate model on this dataset to predict efficiently how likely it is for an adult to gain a heart disease. However, the original data contains nearly 300 variables which was reduced to the most important 40 variables by the author who published this set on Kaggle. Moreover, there exist two different versions of the dataset. With NaNs and without NaNs in it. We will decide which version we want to build on, once we have a clearer structure in which way we want to design our model. Furthermore, the careful decision if and with what we want to substitute the NaNs.\\
 
 
 \section{Visual Depiction}
 \begin{center} 
-\includegraphics[scale=.75]{AIRup.png}
+\includegraphics[scale=.75]{Hearth_death.drawio(1).png}
 \end{center}
 As you can see in the graphic above, we have the user write an input. Of course we give them some hints before that, what they should to talk about in their input. We process that using the ChatGPT API to get data in a comprehensible way for our trained model.
 \\
@@ -56,8 +52,8 @@ We use the data we get back and the ChatGPT API again to write a text, which can
 \section{Dataset + Processing}
 
 % resources used
-We use a total of two datasets for our project. The first one is about heart disease, and the second one is about drugs and medications.
-More specifically, the name of the first dataset is "Indicators of Heart Disease" found on Kaggle\footnote{https://www.kaggle.com/datasets/kamilpytlak/personal-key-indicators-of-heart-disease},
+\subsection{Indicators of Heart Disease}
+We use the dataset "Indicators of Heart Disease" found on Kaggle\footnote{https://www.kaggle.com/datasets/kamilpytlak/personal-key-indicators-of-heart-disease},
 which contains 3 tables: a dataset from 2020 (which we will not use),
 and two updated versions from 2022.
 One of the 2022 tables is simply a subset of the other table where every row which is missing data in any column has been removed.
@@ -91,24 +87,26 @@ which also hints at the sample population of this study.
 We do not expect this column to have a major impact on heart attacks,
 and since this is only limited to a small number of US states, we do not include it in our model.
 
-The second dataset, "Drugs and Medications," also sourced from Kaggle\footnote{\url{https://www.kaggle.com/datasets/aadyasingh55/drug-dataset}},
-focuses on pharmaceutical insights. The dataset contains $11,825$ rows. It includes columns such as:
 
-\begin{itemize} 
-    \item \textit{Medical Name}, identifying the specific drug. 
-    \item \textit{Composition}, listing the medical ingredients comprising each drug. 
-    \item \textit{Uses}, describing the conditions or ailments the drug is designed to treat. 
-    \item \textit{Side Effects}, capturing adverse reactions reported by users. 
-    \item \textit{Image URL}, linking to visuals like packaging or drug-related images. 
-    \item \textit{Manufacturer}, indicating the pharmaceutical company producing the drug. 
-    \item User review statistics: \textit{Excellent Reviews}, \textit{Average Reviews}, and \textit{Poor Reviews}, expressed as percentages. These three values sum to 100 for each drug. 
+
+\subsection{Drug Dataset: Uses, Side Effects and User Reviews}
+For the drug recommendations we use the dataset "Drug Dataset: Uses, Side Effects and User Reviews", which is also found on Kaggle\footnote{https://www.kaggle.com/datasets/aadyasingh55/drug-dataset}. It has over 11496 medications with different columns representing different factors we need for the recommendation. Those consist of:
+
+\begin{itemize}
+    \item \textit{Medicine Name} contains the string
+    \item \textit{Composition} contains the main ingredient which we need for transparency
+    \item \textit{Uses} is necessary for our evaluation
+    \item \textit{Side effects} is also necessary for our evaluation
+    \item \textit{Image URL} is necessary for the feedback to the user, since buying the wrong medicine due to confusing names could be an issue
+    \item \textit{Manufacturer} not necessary
+    \item \textit{Excellent Review} necessary for evaluation
+    \item \textit{Average Review} necessary for evaluation
+    \item \textit{Poor Review} necessary for evaluation
 \end{itemize}
 
-Both datasets complement each other, with the first emphasizing individual health indicators, which will later be used to classify 
-if the lifestyle of a user can lead to heart disease. The second dataset provides the data for our information retrieval system.
 
 \section{Methods/Models}
-After successfully pre-processing and cleaning the dataset from Kaggle, we can now begin by selecting relevant features from the dataset, ensuring that they correspond to the natural language input received from the user. For example, numerical features, such as BMI or age, need to be normalized (divided by max value, such that the number is between 0 and 1) in order to improve the model’s performance. For categorical variables like the smoking status we could simply use binary encoding, since it only allows true or false. Other categorical factors, like the age category for example, that have more classes (60-64, 65-69, 80+, ...), we intend on using methods like one-hot encoding or label encoding in order to integrate them into our ML models. It has to be noted, that not all the factors presented in the dataset have the same impact on heart disease risk. This means that a fitting weighting scheme has to be applied to the different factors (e.g. importance scores). Once our features are selected and prepared, we experiment with several machine learning models to identify the one that provides the best predictive accuracy. Some of our candidate models include methods like linear regression (if we want to give a risk score), logistic regression (if we want specific risk groups), decision trees, random forest and Gradient Descent/Boosting. These models are selected for their ability to handle both categorical and numerical data efficiently and provide accurate predictions of heart disease risk. If we decide to use the classification approach (different risk classes), some important metrics to decide, how well these models perform are for example accuracy (overall correctness of the model), precision (positive predictions that are actually correct) and recall (actual positives that were correctly identified). We then want to utilize a cross-validation method (e.g. k-fold cross-validation) to evaluate the performance of machine learning models and ensuring that they respond correct to unseen data. Using cross-validation can help us assess the effectiveness of our models when predicting heart disease risk based on user inputs. Finally, given the project’s emphasis on building an information retrieval system, we will explore explainability techniques like SHAP values, LIME, or feature importance from random forests to understand the model’s decision-making process. This will help users gain insights into their health risks based on lifestyle and medical indicators, and therefore providing an interpretable output that is both accurate and user-friendly.
+After successfully pre-processing and cleaning the dataset from Kaggle, we can now begin by selecting relevant features from the dataset, corresponding to the input made by the user. Since we do not force people to give us their data about their health, we need to find out what we were given and also if it is useable for our database. It has to be noted, that not all the factors presented in the dataset have the same impact on heart disease risk. This means that a fitting weighting scheme has to be applied to the different factors (e.g. importance scores). Once our features are selected and prepared, we experiment with several machine learning models to identify the one that provides the best predictive accuracy. Some of our candidate models include methods like linear regression (if we want to give a risk score), logistic regression (if we want specific risk groups), decision trees, random forest and Gradient Descent/Boosting. These models are selected for their ability to handle both categorical and numerical data efficiently and provide accurate predictions of heart disease risk. If we decide to use the classification approach (different risk classes), some important metrics to decide, how well these models perform are for example accuracy (overall correctness of the model), precision (positive predictions that are actually correct) and recall (actual positives that were correctly identified). We then want to utilize a cross-validation method (e.g. k-fold cross-validation) to evaluate the performance of machine learning models and ensuring that they respond correct to unseen data. Using cross-validation can help us assess the effectiveness of our models when predicting heart disease risk based on user inputs. If the model decides, that the user is at a high risk of getting a heart disease we will start process the user input correctly for our drug database so we can use it for a more accurate recommendation for the specific patient. There is no drug "for smoker", but different drugs could resolve into a lower blood oxygen or iron levels, which could be a risk for smokers. This has to be accounted for. Therefore we search for different words and definitions described in the side effects, but also benefits using a cosine similarity. If we have found the 5 best recommendations for this specific user, we return the recommendation to the user. 
 
 \newpage
 
@@ -127,26 +125,19 @@ We are group number 4, consisting of the following members:
     \item Alexander Niederreiter
     \item Raphael Hutten
 \end{itemize}
-
-For our project, Raphael Hutten will be entirely cover the part of integrating the ChatGPT API. This includes first of all researching how the API can be integrated in our project. Moreover in order to correctly filter out the users described features, it must be carefully evicted to which extend ChatGPT is really able to derive numbers out of the textual description. For all of this, Raphael will be responsible.
+Fabian Baischer will be responsible for setting up the server and the UI on the website. That means getting a server for the model, hosting it, and let it communicate with a repository so we can push code and change the model accordingly when it comes to any mistakes.
 \vspace{1em}
-
-Patrick Berchtold and Alexander Niederreiter will focus on the Preprocessing and ML Modeling, respectively. The aim is it to fit the best model for this dataset. For that, there are multiple factors that must be taken into consideration:
+Patrick Berchtold is tasked with setting up the model and validate the database so it can give an accurate decision. He will also need to preprocess the input made by the user accordingly because smoking a little and smoking a lot makes a big difference. This is a very important task which comes with a lot of decisions since the following things have to be taken into consideration:
 \begin{itemize}
     \item It must be carefully evicted which model. 
     \item The model should neither underfit nor overfit but aim for the perfect balance between simplicity and accuracy.
     \item How to deal with missing values.
-    \item What approach would be the best for categorial variables.
+    \item What approach would be the best for categorical variables.
     \item Test if cross validation leads to better results.
     \item Using pipelines to fit multiple models and filter out the best ones.
     \item Maybe even use Gradient Boosting with multiple cycles to get a state-of-the-art highly accurate model.
 \end{itemize}
-
-Furthermore, as in the description of the dataset on Kaggle already stated, the classes are unbalanced. Therefore, it must also chosen carefully whether to assign weights to various classes and use corresponding models such for example the RandomForestClassifier.
 \vspace{1em}
-
-Fabian Baischer will cover the part of the evaluation and visualization. Moreover, he will be responsible for the web interface.\\
-The evaluation includes the part of figuring out what would be the best error metrics would be. For example take into account Recall, F1 Score, and PR-AUC.\\
-For the whole visualization, we plan to create a own jupyter notebook where we gather all the results and correlations that can be derived from this dataset. To interpret the likelihood of a heart disease, we will try to plot the significant factors on the most useful diagrams and charts.
+Alexander Niederreiter and Raphael Hutten will concentrate on the recommended drug system based on the User Input. For that they will also need to preprocess the data accordingly, since the database doesn't just say "heart disease", but has different kind of diseases, side effects and uses. To accurately represent the conditions and asked questions for the model and also use the input for different descriptions made by different companies without overseeing working drugs due to synonyms used in the descriptions. (eg. Heart disease, Cardiac disease).
 
 \end{document}
