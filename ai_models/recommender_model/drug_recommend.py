@@ -1,10 +1,8 @@
 import pandas as pd
-import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.preprocessing import OrdinalEncoder
 
-drugs_db = pd.read_csv('data/Medicine_Details.csv')
+drugs_db = pd.read_csv('../../data/Medicine_Details.csv')
 
 # Test user
 user_input = {
