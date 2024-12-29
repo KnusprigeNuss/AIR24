@@ -32,3 +32,12 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+# Ignore all directories named "drug-dataset"
+**/drug-dataset/
+
+# Ignore all directories named "personal-key-indicators-of-heart-disease"
+**/personal-key-indicators-of-heart-disease/
+
+# Ignore all .csv files
+*.csv
