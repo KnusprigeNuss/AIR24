@@ -1,7 +1,14 @@
+import sys
+import os
+from time import sleep
+
+# Add the parent directory to the Python path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import uuid
-
+from ai_models.HealthPredictorAndRecommender import HealthPredictorAndRecommender
 
 # instantiate the app
 app = Flask(__name__)
@@ -30,6 +37,9 @@ BOOKS = [
         'read': True
     }
 ]
+
+predict_disease_model_path = '../../ai_models/predict_disease_model/predict_disease_model.pkl'
+predictor = HealthPredictorAndRecommender(predict_disease_model_path)
 
 def remove_book(book_id):
     for book in BOOKS:
@@ -77,6 +87,24 @@ def single_book(book_id):
         remove_book(book_id)
         response_object['message'] = 'Book removed!'
     return jsonify(response_object)
+
+@app.route('/submit', methods=['POST'])
+def handle_submit():
+    data = request.get_json()
+
+    sleep(2)
+
+    try:
+        person_data = request.get_json()
+
+        # Predict heart disease based on the input data
+        prediction = predictor.predict(person_data)
+
+        data['HeartDisease'] = prediction
+    except Exception as e:
+        data = str(e)
+
+    return jsonify(data)
 
 
 if __name__ == '__main__':
