@@ -17,95 +17,35 @@ app.config.from_object(__name__)
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
 
-BOOKS = [
-    {
-        'id': uuid.uuid4().hex,
-        'title': 'On the Road',
-        'author': 'Jack Kerouac',
-        'read': True
-    },
-    {
-        'id': uuid.uuid4().hex,
-        'title': 'Harry Potter and the Philosopher\'s Stone',
-        'author': 'J. K. Rowling',
-        'read': False
-    },
-    {
-        'id': uuid.uuid4().hex,
-        'title': 'Green Eggs and Ham',
-        'author': 'Dr. Seuss',
-        'read': True
-    }
-]
-
-predict_disease_model_path = '../../ai_models/predict_disease_model/predict_disease_model.pkl'
-predictor = HealthPredictorAndRecommender(predict_disease_model_path)
-
-def remove_book(book_id):
-    for book in BOOKS:
-        if book['id'] == book_id:
-            BOOKS.remove(book)
-            return True
-    return False
-
-
-# sanity check route
-@app.route('/ping', methods=['GET'])
-def ping_pong():
-    return jsonify('pong!')
-
-@app.route('/books', methods=['GET', 'POST'])
-def all_books():
-    response_object = {'status': 'success'}
-    if request.method == 'POST':
-        post_data = request.get_json()
-        BOOKS.append({
-            'id': uuid.uuid4().hex,
-            'title': post_data.get('title'),
-            'author': post_data.get('author'),
-            'read': post_data.get('read')
-        })
-        response_object['message'] = 'Book added!'
-    else:
-        response_object['books'] = BOOKS
-    return jsonify(response_object)
-
-@app.route('/books/<book_id>', methods=['PUT', 'DELETE'])
-def single_book(book_id):
-    response_object = {'status': 'success'}
-    if request.method == 'PUT':
-        post_data = request.get_json()
-        remove_book(book_id)
-        BOOKS.append({
-            'id': uuid.uuid4().hex,
-            'title': post_data.get('title'),
-            'author': post_data.get('author'),
-            'read': post_data.get('read')
-        })
-        response_object['message'] = 'Book updated!'
-    if request.method == 'DELETE':
-        remove_book(book_id)
-        response_object['message'] = 'Book removed!'
-    return jsonify(response_object)
+predictor = HealthPredictorAndRecommender()
 
 @app.route('/submit', methods=['POST'])
 def handle_submit():
-    data = request.get_json()
+    response = {}
 
-    sleep(2)
+    sleep(0.4)
 
     try:
         person_data = request.get_json()
+        response['person_data'] = person_data
 
         # Predict heart disease based on the input data
-        prediction = predictor.predict(person_data)
+        prediction = predictor.predict_heart_disease(person_data)
 
-        data['HeartDisease'] = prediction
+        prediction = 'Yes' # TODO Remove hard coded Yes to actual prediction
+
+        response['HeartDisease'] = prediction
+
+        if prediction == 'Yes':
+            response['DrugRecommendations'] = predictor.get_drug_recommendation(person_data)
+        else:
+            response['DrugRecommendations'] = None
+
     except Exception as e:
-        data = str(e)
+        app.logger.error(f"Error processing request: {e}")
+        response['error'] = str(e)
 
-    return jsonify(data)
-
+    return jsonify(response)
 
 if __name__ == '__main__':
     app.run()

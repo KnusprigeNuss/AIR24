@@ -26,7 +26,7 @@ front_pid=$!
 cd ../backend-server
 
 echo "Starting backend server..."
-flask run --port=5001 --debug &
+flask run --port=5000 --debug &
 back_pid=$!
 
 # Wait for processes to finish

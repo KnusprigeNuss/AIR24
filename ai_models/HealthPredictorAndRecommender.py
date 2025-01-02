@@ -1,32 +1,66 @@
+import os
 import pickle
-import numpy as np
 import pandas as pd
 from sklearn.preprocessing import OrdinalEncoder
+from sklearn.metrics.pairwise import cosine_similarity
 
 class HealthPredictorAndRecommender:
-    def __init__(self, predict_disease_model_path):
-        """
-        Constructor to load the model from a given path.
+    """
+    This class provides functionalities for predicting the likelihood of heart disease based on user-provided information
+    and generating personalized drug recommendations using pre-trained AI models.
+    """
 
-        :param model_path: Path to the pre-trained model file (Pickle format).
-        """
-        self.model = None
+    def __init__(self):
+
+        # Get the current working directory
+        current_directory = os.getcwd()
+
+        # Print the current working directory
+        print("Current Working Directory:", current_directory)
+
+        self.predict_disease_model_path = '../../ai_models/predict_disease_model/predict_disease_model.pkl'
+        self.predict_disease_model = None
+
+        self.recommender_model_path = '../../ai_models/recommender_model/recommender_model.pkl'
+        self.vectorizer = None
+        self.filtered_drugs_db = None
+        self.drug_vectors = None
+
+        # Load the models
+        try:
+            with open(self.predict_disease_model_path, 'rb') as file:
+                self.predict_disease_model = pickle.load(file)
+            print("Predict disease model loaded successfully.")
+        except Exception as e:
+            print(f"Failed to load disease prediction model. Reason: {e}")
 
         try:
-            with open(predict_disease_model_path, 'rb') as file:
-                self.model = pickle.load(file)
-            print("Model loaded successfully")
-        except Exception as e:
-            print(f"Failed to load model. Reason: {e}")
+            with open(self.recommender_model_path, 'rb') as file:
+                data = pickle.load(file)
 
-    def predict(self, person_data):
+            # Extract the objects
+            self.vectorizer = data["vectorizer"]
+            self.filtered_drugs_db = data["filtered_drugs_db"]
+            self.drug_vectors = data["drug_vectors"]
+            print("Recommender model loaded successfully.")
+        except Exception as e:
+            print(f"Failed to load recommender model. Reason: {e}")
+
+    def predict_heart_disease(self, person_data):
         """
         Predict whether a person has heart disease based on their data.
 
-        :param person_data: A dictionary containing the person's details (features).
-        :return: Prediction result (Yes/No) for Heart Disease.
+        Parameters:
+            person_data (dict): A dictionary containing the person's details (features), such as BMI,
+                                smoking habits, age category, and general health.
+
+        Returns:
+            str: Prediction result - 'Yes' if the prediction indicates heart disease or 'No' otherwise.
+
+        Raises:
+            RuntimeError: If the heart disease prediction model has not been loaded successfully.
         """
-        if not self.model:
+        if not self.predict_disease_model:
             raise RuntimeError("Model is not loaded. Ensure the correct path is given during initialization.")
 
         # Make single prediction
@@ -66,9 +100,33 @@ class HealthPredictorAndRecommender:
         ]]
 
         # Utilizing model to predict HeartDisease based on person_data
-        HeartDisease_prediction = self.model.predict(ordinal_person_dataframe)
+        HeartDisease_prediction = self.predict_disease_model.predict(ordinal_person_dataframe)
 
         # Output the prediction
         print("Predicted Heart Disease Status:", HeartDisease_prediction[0])
 
         return 'Yes' if HeartDisease_prediction[0]==1 else 'No'
+
+    def get_drug_recommendation(self, person_data):
+        """
+        Generate recommended drugs for a person based on their medical conditions and data.
+
+        Parameters:
+            person_data (dict): A dictionary containing a person's health conditions, symptoms,
+                                and other relevant medical details.
+
+        Returns:
+            pd.DataFrame: A DataFrame containing the top 5 recommended drugs and related details.
+        """
+
+        # Example logic for matching user_data with drug_vectors to recommend drugs
+        user_conditions = ' '.join([f'{k}:{v}' for k, v in person_data.items()])
+        user_vector = self.vectorizer.transform([user_conditions])
+
+        # Calculate the similarity between the user's vector and the drug vectors (cosine similarity)
+        similarity_scores = cosine_similarity(user_vector, self.drug_vectors).flatten()
+
+        top_indices = similarity_scores.argsort()[:5][::-1]
+        recommended_drugs = self.filtered_drugs_db.iloc[top_indices]
+
+        return recommended_drugs.to_dict(orient='records')

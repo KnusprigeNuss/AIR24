@@ -26,25 +26,68 @@ const formData = ref({
 const loading = ref(false);
 const response = ref(null);
 
+// Helper function to format the response
+const formatResponse = (data) => {
+  let formattedResponse = '';
+
+  // Check if HeartDisease is "Yes"
+  if (data.HeartDisease === 'Yes') {
+    formattedResponse += `Heart Disease Detected: ${data.HeartDisease}\n\n`;
+
+    // Include drug recommendations if available
+    if (data.DrugRecommendations && Array.isArray(data.DrugRecommendations)) {
+      formattedResponse += 'Drug Recommendations:\n';
+      data.DrugRecommendations.forEach((drug, index) => {
+        // Check if `drug` is an object, and retrieve its properties
+        if (typeof drug === 'object' && drug !== null) {
+          formattedResponse += `  Recommendation ${index + 1}: ${JSON.stringify(drug)}\n`;
+        } else {
+          // If it's a string or invalid object
+          formattedResponse += `  Recommendation ${index + 1}: ${drug}\n`;
+        }
+      });
+    } else {
+      formattedResponse += 'No Drug Recommendations available.\n';
+    }
+  } else {
+    // If HeartDisease is not "Yes"
+    formattedResponse += 'No Heart Disease Risk Detected.\n';
+  }
+
+  // Include any additional fields dynamically
+  Object.keys(data).forEach((key) => {
+    if (key !== 'HeartDisease' && key !== 'DrugRecommendations') {
+      if (typeof data[key] === 'object') {
+        // If the field value is an object, display it in JSON format
+        formattedResponse += `${key}: ${JSON.stringify(data[key], null, 2)}\n`;
+      } else {
+        formattedResponse += `${key}: ${data[key]}\n`;
+      }
+    }
+  });
+
+  return formattedResponse.trim(); // Remove extra spaces or newlines
+};
+
+// Handle form submit
 const handleFormSubmit = async () => {
   try {
     loading.value = true;
     response.value = null;
-    const result = await axios.post('http://localhost:5001/submit', formData.value);
+    const result = await axios.post('http://localhost:5000/submit', formData.value);
 
-    // Extract just the HeartDisease attribute
-    if (result.data && result.data.HeartDisease !== undefined) {
-      response.value = "Heart disease risk: " + result.data.HeartDisease;
+    if (result.data) {
+      response.value = formatResponse(result.data);
     } else {
-      response.value = 'HeartDisease attribute not found in response';
+      response.value = 'Unexpected response structure received';
     }
-
   } catch (error) {
     response.value = 'An error occurred while submitting the form: ' + error;
   } finally {
     loading.value = false;
   }
 };
+
 
 const BMIOptions = Array.from({ length: 101 }, (_, i) => i); // Float from 0 to 100
 const PhysicalHealthOptions = Array.from({ length: 31 }, (_, i) => i); // 0 to 30
