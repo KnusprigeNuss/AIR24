@@ -3,7 +3,7 @@
 ## Start frontend and backend
 Just open the terminal and start the bash script.
 ```sh
-/bin/bash AIR24/start_frontend_backend.sh
+/bin/bash start_frontend_backend.sh
 ```
 
 

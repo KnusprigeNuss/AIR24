@@ -1,8 +1,12 @@
 import os
 import pickle
+
 import pandas as pd
-from sklearn.preprocessing import OrdinalEncoder
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.preprocessing import OrdinalEncoder
+
+from ai_models.recommender_model.RecommenderModel import Recommender
+
 
 class HealthPredictorAndRecommender:
     """
@@ -120,13 +124,17 @@ class HealthPredictorAndRecommender:
         """
 
         # Example logic for matching user_data with drug_vectors to recommend drugs
-        user_conditions = ' '.join([f'{k}:{v}' for k, v in person_data.items()])
-        user_vector = self.vectorizer.transform([user_conditions])
+        recommender = Recommender(person_data)
+        recommender.getVectorizer()
+        recommender.getSimilarityScores()
+        return recommender.getTopIndices()
+        # user_conditions = ' '.join([f'{k}:{v}' for k, v in person_data.items()])
+        # user_vector = self.vectorizer.transform([user_conditions])
 
-        # Calculate the similarity between the user's vector and the drug vectors (cosine similarity)
-        similarity_scores = cosine_similarity(user_vector, self.drug_vectors).flatten()
+        # # Calculate the similarity between the user's vector and the drug vectors (cosine similarity)
+        # similarity_scores = cosine_similarity(user_vector, self.drug_vectors).flatten()
 
-        top_indices = similarity_scores.argsort()[:5][::-1]
-        recommended_drugs = self.filtered_drugs_db.iloc[top_indices]
+        # top_indices = similarity_scores.argsort()[:5][::-1]
+        # recommended_drugs = self.filtered_drugs_db.iloc[top_indices]
 
-        return recommended_drugs.to_dict(orient='records')
+        # return recommended_drugs.to_dict(orient='records')
