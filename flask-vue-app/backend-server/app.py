@@ -1,14 +1,17 @@
-import sys
 import os
+import sys
 from time import sleep
 
 # Add the parent directory to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 
+import uuid
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-import uuid
-from ai_models.HealthPredictorAndRecommender import HealthPredictorAndRecommender
+
+from ai_models.HealthPredictorAndRecommender import \
+    HealthPredictorAndRecommender
 
 # instantiate the app
 app = Flask(__name__)

@@ -74,7 +74,7 @@ const DiabeticOptionsConsistent = [
 
 const PregnancyOption = "Yes (during pregnancy)";
 
-const GenHealthOptions = ["Excellent", "Very Good", "Good", "Fair", "Poor"];
+const GenHealthOptions = ["Excellent", "Very good", "Good", "Fair", "Poor"];
 
 const fillRandomValues = () => {
   formData.value.BMI = Math.floor(Math.random() * (40 - 20 + 1)) + 20

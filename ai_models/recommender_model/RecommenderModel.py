@@ -29,6 +29,7 @@ class Recommender:
   def __init__(self, user_data: dict):
     user_df = pd.DataFrame([user_data])
     self.user_data_ = user_df.drop(columns=['HeartDisease', 'DiffWalking', 'AgeCategory', 'GenHealth', 'PhysicalActivity', 'Race', 'Sex']).to_dict(orient='records')[0]
+    print(self.user_data_.items())
     self.alcohol_: bool = True if user_data['AlcoholDrinking'] == 'Yes' else False
     self.asthma_: bool = True if user_data['Asthma'] == 'Yes' else False
     self.bmi_: int = int(user_data['BMI'])

@@ -27,11 +27,6 @@ class HealthPredictorAndRecommender:
         self.predict_model_encoder_path = '../../ai_models/predict_disease_model/predict_model_encoder.pkl'
         self.predict_model_encoder = None
 
-        self.recommender_model_path = '../../ai_models/recommender_model/recommender_model.pkl'
-        self.vectorizer = None
-        self.filtered_drugs_db = None
-        self.drug_vectors = None
-
         # Load the models
         try:
             with open(self.predict_disease_model_path, 'rb') as file:
@@ -47,17 +42,6 @@ class HealthPredictorAndRecommender:
         except Exception as e:
             print(f"Failed to load predict model encoder. Reason: {e}")
 
-        try:
-            with open(self.recommender_model_path, 'rb') as file:
-                data = pickle.load(file)
-
-            # Extract the objects
-            self.vectorizer = data["vectorizer"]
-            self.filtered_drugs_db = data["filtered_drugs_db"]
-            self.drug_vectors = data["drug_vectors"]
-            print("Recommender model loaded successfully.")
-        except Exception as e:
-            print(f"Failed to load recommender model. Reason: {e}")
 
     def predict_heart_disease(self, person_data):
         """
@@ -101,6 +85,7 @@ class HealthPredictorAndRecommender:
         print(f'object_cols: {object_cols}')
 
         ordinal_person_dataframe = person_dataframe.copy()
+        print(f'personn_dataframestuff: {person_dataframe[object_cols].to_string()}')
 
         # Encode categorical data
         n = self.predict_model_encoder.transform(person_dataframe[object_cols])
@@ -155,7 +140,7 @@ class HealthPredictorAndRecommender:
         recommender = Recommender(person_data)
         recommender.getVectorizer()
         recommender.getSimilarityScores()
-        return recommender.getTopIndices()
+        return recommender.getTopIndices().to_dict(orient='records')
         # user_conditions = ' '.join([f'{k}:{v}' for k, v in person_data.items()])
         # user_vector = self.vectorizer.transform([user_conditions])
 
