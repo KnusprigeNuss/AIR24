@@ -76,7 +76,7 @@ const PregnancyOption = "Yes (during pregnancy)";
 const GenHealthOptions = ["Excellent", "Very Good", "Good", "Fair", "Poor"];
 
 const fillRandomValues = () => {
-  formData.value.BMI = BMIOptions[Math.floor(Math.random() * BMIOptions.length)];
+  formData.value.BMI = Math.floor(Math.random() * (40 - 20 + 1)) + 20
   formData.value.Smoking = Math.random() > 0.5 ? "Yes" : "No";
   formData.value.AlcoholDrinking = Math.random() > 0.5 ? "Yes" : "No";
   formData.value.Stroke = Math.random() > 0.5 ? "Yes" : "No";
@@ -97,7 +97,7 @@ const fillRandomValues = () => {
 
   formData.value.PhysicalActivity = Math.random() > 0.5 ? "Yes" : "No";
   formData.value.GenHealth = GenHealthOptions[Math.floor(Math.random() * GenHealthOptions.length)];
-  formData.value.SleepTime = SleepTimeOptions[Math.floor(Math.random() * SleepTimeOptions.length)];
+  formData.value.SleepTime = Math.floor(Math.random() * (12 - 4 + 1)) + 4;
   formData.value.Asthma = Math.random() > 0.5 ? "Yes" : "No";
   formData.value.KidneyDisease = Math.random() > 0.5 ? "Yes" : "No";
   formData.value.SkinCancer = Math.random() > 0.5 ? "Yes" : "No";
