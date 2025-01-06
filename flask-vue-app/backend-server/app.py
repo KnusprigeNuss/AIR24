@@ -32,8 +32,6 @@ def handle_submit():
         # Predict heart disease based on the input data
         prediction = predictor.predict_heart_disease(person_data)
 
-        prediction = 'Yes' # TODO Remove hard coded Yes to actual prediction
-
         response['HeartDisease'] = prediction
 
         if prediction == 'Yes':
