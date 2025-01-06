@@ -1,3 +1,5 @@
+// ATTENTION: THIS FILE WAS WRITTEN WITH AI ASSISTANCE!
+
 <script setup>
 import {ref} from 'vue';
 import axios from "axios";
@@ -44,7 +46,6 @@ const handleFormSubmit = async () => {
     loading.value = false;
   }
 };
-
 
 const BMIOptions = Array.from({length: 101}, (_, i) => i); // Float from 0 to 100
 const PhysicalHealthOptions = Array.from({length: 31}, (_, i) => i); // 0 to 30
