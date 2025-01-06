@@ -24,6 +24,8 @@ class HealthPredictorAndRecommender:
 
         self.predict_disease_model_path = '../../ai_models/predict_disease_model/predict_disease_model.pkl'
         self.predict_disease_model = None
+        self.predict_model_encoder_path = '../../ai_models/predict_disease_model/predict_model_encoder.pkl'
+        self.predict_model_encoder = None
 
         self.recommender_model_path = '../../ai_models/recommender_model/recommender_model.pkl'
         self.vectorizer = None
@@ -37,6 +39,13 @@ class HealthPredictorAndRecommender:
             print("Predict disease model loaded successfully.")
         except Exception as e:
             print(f"Failed to load disease prediction model. Reason: {e}")
+
+        try:
+            with open(self.predict_model_encoder_path, 'rb') as file:
+                self.predict_model_encoder = pickle.load(file)
+            print("Predict model encoder loaded successfully.")
+        except Exception as e:
+            print(f"Failed to load predict model encoder. Reason: {e}")
 
         try:
             with open(self.recommender_model_path, 'rb') as file:
@@ -66,20 +75,37 @@ class HealthPredictorAndRecommender:
         """
         if not self.predict_disease_model:
             raise RuntimeError("Model is not loaded. Ensure the correct path is given during initialization.")
+        if not self.predict_model_encoder:
+            raise RuntimeError("Model encoder is not loaded. Ensure the correct path is given during initialization.")
 
         # Make single prediction
 
         # Convert the dictionary into a DataFrame
         person_dataframe = pd.DataFrame([person_data])
 
-        s = (person_dataframe.dtypes == 'object')
-        object_cols = list(s[s].index)
+        object_cols = [
+            "Smoking",
+            "AlcoholDrinking",
+            "Stroke",
+            "DiffWalking",
+            "Sex",
+            "AgeCategory",
+            "Race",
+            "Diabetic",
+            "PhysicalActivity",
+            "GenHealth",
+            "Asthma",
+            "KidneyDisease",
+            "SkinCancer"
+        ]
+        print(f'object_cols: {object_cols}')
 
         ordinal_person_dataframe = person_dataframe.copy()
 
         # Encode categorical data
-        ordinal_encoder = OrdinalEncoder()
-        ordinal_person_dataframe[object_cols] = ordinal_encoder.fit_transform(person_dataframe[object_cols])
+        n = self.predict_model_encoder.transform(person_dataframe[object_cols])
+        ordinal_person_dataframe[object_cols] = n
+        print(f'n: {n}')
 
         # Reorder the dataframe to match the feature names to those that were passed during fit.
         # Feature names must be in the same order as they were in fit
@@ -102,6 +128,8 @@ class HealthPredictorAndRecommender:
             "KidneyDisease",
             "SkinCancer"
         ]]
+
+        print(f'opdf: {ordinal_person_dataframe}')
 
         # Utilizing model to predict HeartDisease based on person_data
         HeartDisease_prediction = self.predict_disease_model.predict(ordinal_person_dataframe)
