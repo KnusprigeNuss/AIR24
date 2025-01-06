@@ -1,0 +1,141 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="25.0.3">
+  <diagram name="Page-1" id="5AQmDLw-XcEfNmvhwQUx">
+    <mxGraphModel dx="1042" dy="797" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-36" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="425" y="160" width="455" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="vRX5qVVOtZrlgE63Qkjg-1" target="vRX5qVVOtZrlgE63Qkjg-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-1" value="&lt;span style=&quot;font-size: 10px;&quot;&gt;Prediction&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;Jupyter Notebook&lt;/span&gt;&lt;/div&gt;" style="shape=note;size=20;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="543" y="383" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-68" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=80;exitDy=50;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="vRX5qVVOtZrlgE63Qkjg-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="710.0000000000002" y="555" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-2" value="&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;Recommender&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;Jupyter Notebook&lt;/span&gt;&lt;/div&gt;" style="shape=note;size=20;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="543" y="505" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-6" value="" style="html=1;shape=mxgraph.basic.isocube;isoAngle=15;" vertex="1" parent="1">
+          <mxGeometry x="430" y="403" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="vRX5qVVOtZrlgE63Qkjg-12" target="vRX5qVVOtZrlgE63Qkjg-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-12" value="" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" vertex="1" parent="1">
+          <mxGeometry x="440" y="200" width="63.11" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-13" value="&lt;font style=&quot;font-size: 27px;&quot;&gt;&lt;b style=&quot;&quot;&gt;Flask Vue Server&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="543" y="100" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-14" value="" style="sketch=0;aspect=fixed;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#00188D;shape=mxgraph.azure.computer" vertex="1" parent="1">
+          <mxGeometry x="141.11" y="120" width="77.78" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-15" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#505050;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.devices.cell_phone_iphone_standalone;" vertex="1" parent="1">
+          <mxGeometry x="160" y="260" width="40" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-22" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="280" y="200" width="111.11000000000001" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-19" value="" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/internet_cloud.svg;" vertex="1" parent="vRX5qVVOtZrlgE63Qkjg-22">
+          <mxGeometry width="111.11" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-21" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;http://localhost:5173/&lt;/font&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;labelBackgroundColor=none;" vertex="1" parent="vRX5qVVOtZrlgE63Qkjg-22">
+          <mxGeometry x="11.110000000000014" y="25" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;" edge="1" parent="1" source="vRX5qVVOtZrlgE63Qkjg-19" target="vRX5qVVOtZrlgE63Qkjg-14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="250" y="235" />
+              <mxPoint x="250" y="155" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="1" source="vRX5qVVOtZrlgE63Qkjg-19" target="vRX5qVVOtZrlgE63Qkjg-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="250" y="235" />
+              <mxPoint x="250" y="291" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-26" value="" style="shape=datastore;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="393" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-27" value="heart_disease.csv" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="685" y="363" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-29" value="Medicine_Details.csv" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="675" y="490" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-38" value="&lt;span style=&quot;font-size: 10px;&quot;&gt;HomeInputForm&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;VUE&lt;/span&gt;&lt;/div&gt;" style="shape=note;size=14;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="525" y="210" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-39" value="&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;app.py&lt;/span&gt;&lt;/div&gt;" style="shape=note;size=14;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="755" y="210" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-40" value="Frontend&lt;div&gt;Vue&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="530" y="165" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-41" value="Backend&lt;div&gt;Flask&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="760" y="165" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;startArrow=diamondThin;startFill=0;startSize=18;" edge="1" parent="1" source="vRX5qVVOtZrlgE63Qkjg-62" target="vRX5qVVOtZrlgE63Qkjg-39">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="265" y="400" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="255" y="340" />
+              <mxPoint x="795" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-47" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="605" y="249" as="sourcePoint" />
+            <mxPoint x="755" y="249" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-51" value="" style="html=1;shape=mxgraph.basic.isocube;isoAngle=15;" vertex="1" parent="1">
+          <mxGeometry x="665" y="225" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-53" value="Response&lt;div&gt;JSON object&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="623" y="195" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-56" value="predict_model_encoder.pkl" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="375" y="373" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="vRX5qVVOtZrlgE63Qkjg-6" target="vRX5qVVOtZrlgE63Qkjg-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-62" value="&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-weight: 700; text-wrap-mode: wrap;&quot;&gt;HealthPredictorAndRecommender&lt;/span&gt;" style="swimlane;html=1;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="150" y="383" width="210" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-63" value="+ predict_heart_disease: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="vRX5qVVOtZrlgE63Qkjg-62">
+          <mxGeometry y="26" width="210" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-64" value="+&amp;nbsp;get_drug_recommendation: Dict" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="vRX5qVVOtZrlgE63Qkjg-62">
+          <mxGeometry y="52" width="210" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="vRX5qVVOtZrlgE63Qkjg-63" target="vRX5qVVOtZrlgE63Qkjg-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-67" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="vRX5qVVOtZrlgE63Qkjg-64" target="vRX5qVVOtZrlgE63Qkjg-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="448" />
+              <mxPoint x="400" y="545" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vRX5qVVOtZrlgE63Qkjg-69" value="" style="shape=datastore;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="530" width="60" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
