@@ -106,6 +106,89 @@ const fillRandomValues = () => {
   console.log("Form filled with random data:", formData.value);
 };
 
+const riskyPatients = [
+  {
+    BMI: 35,
+    SleepTime: 12,
+    PhysicalHealth: 7,
+    MentalHealth: 26,
+    GenHealth: 'Excellent',
+    Smoking: 'Yes',
+    AlcoholDrinking: 'No',
+    PhysicalActivity: 'No',
+    Sex: 'Male',
+    AgeCategory: '75-79',
+    Race: 'Black',
+    Stroke: 'Yes',
+    DiffWalking: 'Yes',
+    Diabetic: 'Yes',
+    Asthma: 'Yes',
+    KidneyDisease: 'Yes',
+    SkinCancer: 'No',
+  },
+  {
+    BMI: 25,
+    SleepTime: 5,
+    PhysicalHealth: 28,
+    MentalHealth: 16,
+    GenHealth: 'Poor',
+    Smoking: 'Yes',
+    AlcoholDrinking: 'No',
+    PhysicalActivity: 'No',
+    Sex: 'Female',
+    AgeCategory: '70-74',
+    Race: 'Black',
+    Stroke: 'No',
+    DiffWalking: 'Yes',
+    Diabetic: 'No',
+    Asthma: 'No',
+    KidneyDisease: 'Yes',
+    SkinCancer: 'No',
+  },
+  {
+    BMI: 27,
+    SleepTime: 12,
+    PhysicalHealth: 23,
+    MentalHealth: 29,
+    GenHealth: 'Poor',
+    Smoking: 'No',
+    AlcoholDrinking: 'Yes',
+    PhysicalActivity: 'No',
+    Sex: 'Male',
+    AgeCategory: '70-74',
+    Race: 'White',
+    Stroke: 'Yes',
+    DiffWalking: 'Yes',
+    Diabetic: 'No',
+    Asthma: 'No',
+    KidneyDisease: 'Yes',
+    SkinCancer: 'Yes',
+  },
+];
+
+const getRandomRiskyPatient = () => {
+  const riskyPatient = riskyPatients[Math.floor(Math.random() * riskyPatients.length)]
+  console.log('Selecting risky patient', riskyPatient)
+
+  formData.value.BMI = riskyPatient.BMI;
+  formData.value.SleepTime = riskyPatient.SleepTime;
+  formData.value.Smoking = riskyPatient.Smoking;
+  formData.value.AlcoholDrinking = riskyPatient.AlcoholDrinking;
+  formData.value.Stroke = riskyPatient.Stroke;
+  formData.value.PhysicalHealth = riskyPatient.PhysicalHealth;
+  formData.value.MentalHealth = riskyPatient.MentalHealth;
+  formData.value.DiffWalking = riskyPatient.DiffWalking;
+  formData.value.Sex = riskyPatient.Sex;
+  formData.value.AgeCategory = riskyPatient.AgeCategory;
+  formData.value.Race = riskyPatient.Race;
+  formData.value.Diabetic = riskyPatient.Diabetic;
+  formData.value.PhysicalActivity = riskyPatient.PhysicalActivity;
+  formData.value.GenHealth = riskyPatient.GenHealth;
+  formData.value.Asthma = riskyPatient.Asthma;
+  formData.value.KidneyDisease = riskyPatient.KidneyDisease;
+  formData.value.SkinCancer = riskyPatient.SkinCancer;
+};
+
 </script>
 
 <template>
@@ -287,6 +370,16 @@ const fillRandomValues = () => {
               min-width: 150px;"
               @click="fillRandomValues">
             Fill Random Values
+          </button>
+
+          <!-- Button to fill random values -->
+          <button
+              type="button"
+              class="btn btn-secondary mb-3"
+              style="width: 33%;
+              min-width: 150px;"
+              @click="getRandomRiskyPatient">
+            Get random risky patient
           </button>
 
           <!-- Submit button -->
