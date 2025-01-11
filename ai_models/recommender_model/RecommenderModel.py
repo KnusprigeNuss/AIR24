@@ -13,7 +13,7 @@ class Recommender:
   heart_string_           = ['heart', 'cardiovascular', 'pressure'] # Get different types of heart synonyms to filter out only those first.
   
   alcohol_string_         = ['alcohol', 'drinking', 'alcoholic', 'liver']
-  asthma_string_          = ['asthma', 'breathing', 'inhaler', 'wheezing', 'cough']
+  asthma_string_          = ['asthma', 'breathing', 'inhaler', 'wheezing', 'cough', 'respiratory', 'lung']
   bmi_string_             = ['bmi', 'body', 'mass', 'index', 'weight', 'obesity']
   diabetes_string_        = ['diabetes', 'sugar', 'insulin', 'glucose']
   kidney_disease_string_  = ['kidney', 'disease', 'renal', 'failure', 'dialysis', 'urine']
@@ -21,7 +21,7 @@ class Recommender:
   physical_health_string_ = ['physical', 'health', 'exercise', 'workout', 'gym', 'fitness', 'fit']
   skin_cancer_string_     = ['skin', 'cancer', 'melanoma', 'mole', 'sun', 'uv']
   sleep_time_string_      = ['sleep', 'time', 'tired', 'fatigue', 'rest', 'nap']
-  smoking_string_         = ['smoking', 'cigarette', 'nicotine', 'tobacco']
+  smoking_string_         = ['smoking', 'cigarette', 'nicotine', 'tobacco', 'respiratory', 'lung', 'throat']
   stroke_string_          = ['stroke', 'brain', 'paralysis', 'hemorrhage', 'clot', 'Dizziness', 'Headache', 'Nausea']
   
   
@@ -100,29 +100,29 @@ class Recommender:
 
 def test():
   user_input = {
-    'AgeCategory': 2,
-    'AlcoholDrinking': 'No',
+    'AgeCategory': "80 or older",
+    'AlcoholDrinking': 'Yes',
     'Asthma': 'Yes',
-    'BMI': 25,
-    'Diabetic': 'No',
+    'BMI': 35,
+    'Diabetic': 'Yes',
     'DiffWalking': 'Yes',
-    'GenHealth': 'Good',
+    'GenHealth': 'Poor',
     'HeartDisease': 'Yes',
-    'KidneyDisease': 'No',
-    'MentalHealth': 5,
+    'KidneyDisease': 'Yes',
+    'MentalHealth': 29,
     'PhysicalActivity':'No',
-    'PhysicalHealth': 10,
+    'PhysicalHealth': 29,
     'Race': 'White',
     'Sex': 'Male',
-    'SkinCancer': 'No',
-    'SleepTime': 7,
-    'Smoking': 'No',
-    'Stroke': 'No'    
+    'SkinCancer': 'Yes',
+    'SleepTime': 2,
+    'Smoking': 'Yes',
+    'Stroke': 'Yes'    
   }
   recommender = Recommender(user_input)
   recommender.getVectorizer()
   recommender.getSimilarityScores()
-  print(recommender.getTopIndices())  
+  print(recommender.getTopIndices().to_dict(orient='records'))  
   
   
 if __name__ == '__main__':
