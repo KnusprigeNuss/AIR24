@@ -408,11 +408,10 @@ const getRandomRiskyPatient = () => {
       <div v-if="response" class="response mt-4">
         <div v-if="response.HeartDisease && response.HeartDisease === 'Yes'">
           <h3 style="color: red; font-weight: bold;">Heart Disease Risk: Yes</h3>
-          <p>U will die soon! Glhf</p>
 
           <!-- Display Drug Recommendations -->
           <div v-if="response.DrugRecommendations && response.DrugRecommendations.length > 0">
-            <h4 class="mt-4">Drug Recommendations until you die:</h4>
+            <h4 class="mt-4">Drug Recommendations:</h4>
             <div class="row">
               <div
                   v-for="(drug, index) in response.DrugRecommendations"
